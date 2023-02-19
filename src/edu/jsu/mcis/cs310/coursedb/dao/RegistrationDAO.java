@@ -11,7 +11,8 @@ public class RegistrationDAO {
     // INSERT YOUR CODE HERE
     private static final String QUERY_INSERT = "INSERT INTO registration VALUES (?, ?, ?)";
     private static final String QUERY_DELETE = "DELETE FROM registration WHERE studentid = ? AND termid = ? AND crn = ?";
-    private static final String QUERY_DELETE_NOCRN = "DELETE FROM registration WHERE sutdentid = ? AND termid = ?";
+    private static final String QUERY_DELETE_NOCRN = "DELETE FROM registration WHERE studentid = ? AND termid = ?";
+    private static final String QUERY_LIST = "SELECT * FROM registration WHERE studentid = ? AND termid = ?";
 
     private final DAOFactory daoFactory;
     
@@ -31,8 +32,6 @@ public class RegistrationDAO {
             Connection conn = daoFactory.getConnection();
             
             if (conn.isValid(0)) {
-                
-                // INSERT YOUR CODE HERE
 
                 ps = conn.prepareStatement(QUERY_INSERT, Statement.RETURN_GENERATED_KEYS);
                 ps.setInt(1, studentid);
@@ -72,8 +71,7 @@ public class RegistrationDAO {
             Connection conn = daoFactory.getConnection();
             
             if (conn.isValid(0)) {
-                
-                // INSERT YOUR CODE HERE
+
                 ps = conn.prepareStatement(QUERY_DELETE);
                 ps.setInt(1, studentid);
                 ps.setInt(2, termid);
@@ -111,8 +109,7 @@ public class RegistrationDAO {
             Connection conn = daoFactory.getConnection();
             
             if (conn.isValid(0)) {
-                
-                // INSERT YOUR CODE HERE
+
                 ps = conn.prepareStatement(QUERY_DELETE_NOCRN);
                 ps.setInt(1, studentid);
                 ps.setInt(2, termid);
@@ -152,9 +149,14 @@ public class RegistrationDAO {
             Connection conn = daoFactory.getConnection();
             
             if (conn.isValid(0)) {
-                
-                // INSERT YOUR CODE HERE
-                
+
+                ps = conn.prepareStatement(QUERY_LIST);
+                ps.setInt(1, studentid);
+                ps.setInt(2, termid);
+
+                rs = ps.executeQuery();
+
+                result = DAOUtility.getResultSetAsJson(rs);
             }
             
         }

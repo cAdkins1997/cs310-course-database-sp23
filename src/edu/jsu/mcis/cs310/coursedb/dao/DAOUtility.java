@@ -16,7 +16,6 @@ public class DAOUtility {
         
             if (rs != null) {
 
-                // INSERT YOUR CODE HERE
                 ResultSetMetaData metaData = rs.getMetaData();
                 int numColumns = metaData.getColumnCount();
 
