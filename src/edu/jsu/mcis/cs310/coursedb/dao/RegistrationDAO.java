@@ -12,7 +12,7 @@ public class RegistrationDAO {
     private static final String QUERY_INSERT = "INSERT INTO registration VALUES (?, ?, ?)";
     private static final String QUERY_DELETE = "DELETE FROM registration WHERE studentid = ? AND termid = ? AND crn = ?";
     private static final String QUERY_DELETE_NOCRN = "DELETE FROM registration WHERE studentid = ? AND termid = ?";
-    private static final String QUERY_LIST = "SELECT * FROM registration WHERE studentid = ? AND termid = ?";
+    private static final String QUERY_LIST = "SELECT * FROM registration WHERE studentid = ? AND termid = ? ORDER BY crn";
 
     private final DAOFactory daoFactory;
     
@@ -116,7 +116,7 @@ public class RegistrationDAO {
 
                 int count = ps.executeUpdate();
 
-                if (count < 0) {
+                if (count > 0) {
 
                     result = true;
                 }
