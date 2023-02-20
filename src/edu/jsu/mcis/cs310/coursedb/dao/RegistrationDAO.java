@@ -7,8 +7,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 
 public class RegistrationDAO {
-    
-    // INSERT YOUR CODE HERE
+
     private static final String QUERY_INSERT = "INSERT INTO registration VALUES (?, ?, ?)";
     private static final String QUERY_DELETE = "DELETE FROM registration WHERE studentid = ? AND termid = ? AND crn = ?";
     private static final String QUERY_DELETE_NOCRN = "DELETE FROM registration WHERE studentid = ? AND termid = ?";
